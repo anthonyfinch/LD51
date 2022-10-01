@@ -1,24 +1,37 @@
 class_name Player
 extends KinematicBody
 
+enum PlayerState {
+	Walking,
+	Crouching
+}
 
 export (float) var gravity = -34.8
-export (float) var max_speed = 8.0
+export (float) var max_walk_speed = 8.0
+export (float) var max_crouch_speed = 3.0
 export (float) var jump_speed  = 12.0
 export (float) var acceleration = 1.0
 export (float) var deceleration = 5.0
 export (float) var max_slope_angle = 90.0
 export (float) var mouse_sensitivity = 0.4
+export (float) var crouch_amount = 0.5
 export (float) var walk_footstep_delay = 0.5
 
 export (float) var min_visisibility_cutoff = 10.0
 export (float) var max_visisibility_cutoff = 220.0
 
+onready var body : CollisionShape = $Body
+onready var head : Spatial = $Head
 onready var camera : Camera = $Head/Pivot/Camera
 onready var pivot : Spatial = $Head/Pivot
 onready var visi_viewport : Viewport = $ViewportContainer/Viewport
 onready var visi_cam : Camera = $ViewportContainer/Viewport/VisibilityCamera
 onready var visi_timer : Timer = $VisibilityTimer
+onready var normal_body_height : float = body.shape.height
+onready var normal_body_radius : float = body.shape.radius
+onready var normal_body_offset : float = body.transform.origin.y
+onready var normal_head_height : float = head.transform.origin.y
+
 
 # UI
 onready var visi_bar : ProgressBar = $UI/Visibility
@@ -33,6 +46,7 @@ onready var overlay_text : Control = $UI/OverlayText
 onready var overlay_text_label : Label = $UI/OverlayText/Label
 onready var overlay_text_timer : Timer = $OverlayTextTimer
 
+var state = PlayerState.Walking
 var dir := Vector3()
 var vel := Vector3()
 var visibility := 0.0
@@ -67,6 +81,36 @@ func _physics_process(delta):
 	if not GameState.paused:
 		_process_movement(delta)
 		_do_footsteps(delta)
+		if state == PlayerState.Crouching:
+			_do_crouch()
+
+func _do_crouch():
+	var rate_of_change = 0.1
+	var from
+	var to
+
+	from = body.shape.height
+	to = normal_body_height * crouch_amount
+	body.shape.height = lerp(from, to, rate_of_change)
+
+	from = body.shape.radius
+	to = normal_body_radius * crouch_amount
+	body.shape.radius = lerp(from, to, rate_of_change)
+
+	from = body.transform.origin.y
+	to = normal_body_offset * crouch_amount
+	body.transform.origin.y = lerp(from, to, rate_of_change)
+
+	from = head.transform.origin.y
+	to = normal_head_height * crouch_amount
+	head.transform.origin.y = lerp(from, to, rate_of_change)
+
+func _undo_crouch():
+	state = PlayerState.Walking
+	body.shape.height = normal_body_height
+	body.shape.radius = normal_body_radius
+	body.transform.origin.y = normal_body_offset
+	head.transform.origin.y = normal_head_height
 
 func _do_footsteps(delta):
 	if is_on_floor() and vel.length() > 0.0:
@@ -80,7 +124,6 @@ func _do_footsteps(delta):
 
 	else:
 		footstep_countdown = 0.0
-
 
 func _process_input(_delta):
 
@@ -108,6 +151,12 @@ func _process_input(_delta):
 			if Input.is_action_just_pressed("jump"):
 				vel.y = jump_speed
 
+		if Input.is_action_just_pressed("crouch"):
+			if state == PlayerState.Walking:
+				state = PlayerState.Crouching
+			elif state == PlayerState.Crouching:
+				_undo_crouch()
+
 	if Input.is_action_just_pressed("ui_cancel"):
 		_toggle_pause()
 
@@ -134,6 +183,10 @@ func _process_movement(delta):
 	hvel.y = 0
 
 	var target = dir
+
+	var max_speed = max_walk_speed
+	if state == PlayerState.Crouching:
+		max_speed = max_crouch_speed
 
 	target *= max_speed
 
