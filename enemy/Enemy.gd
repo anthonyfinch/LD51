@@ -80,14 +80,15 @@ func _check_for_player():
 						target = body.global_transform.origin
 						_set_path()
 						state = EnemyState.Attacking
-						print("I can see you")
+						# print("I can see you")
 					elif body.visibility > partial_visibility_cutoff:
 						target = body.global_transform.origin
 						_set_path()
 						state = EnemyState.Investigating
-						print("Who goes there?")
+						# print("Who goes there?")
 					else:
-						print("Huh, nothing to see")
+						pass
+						# print("Huh, nothing to see")
 
 func _physics_process(_delta):
 	if not GameState.paused:
