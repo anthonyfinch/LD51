@@ -9,23 +9,46 @@ export (float) var deceleration = 5.0
 export (float) var max_slope_angle = 90.0
 export (float) var mouse_sensitivity = 0.4
 
-onready var camera = $Head/Pivot/Camera
-onready var pivot = $Head/Pivot
-onready var visi_cam = $ViewportContainer/Viewport/VisibilityCamera
+export (float) var min_visisibility_cutoff = 10.0
+export (float) var max_visisibility_cutoff = 220.0
+
+onready var camera : Camera = $Head/Pivot/Camera
+onready var pivot : Spatial = $Head/Pivot
+onready var visi_viewport : Viewport = $ViewportContainer/Viewport
+onready var visi_cam : Camera = $ViewportContainer/Viewport/VisibilityCamera
+onready var visi_timer : Timer = $VisibilityTimer
+onready var visi_bar : ProgressBar = $UI/Visibility
 
 var dir = Vector3()
 var vel = Vector3()
+var visibility = 0.0
 
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	visi_timer.connect("timeout", self, "_update_visibility")
+	_update_visibility()
+
+func _update_visibility():
+	var visi_img = visi_viewport.get_texture().get_data()
+	visi_img.lock()
+
+	var raw_pix = visi_img.get_data()
+	var total = 0.0
+
+	for pix in raw_pix:
+		total += pix
+
+	var raw_vis = total / (raw_pix.size())
+	var clamped_vis = clamp(raw_vis, min_visisibility_cutoff, max_visisibility_cutoff)
+	visibility = clamped_vis / (max_visisibility_cutoff - min_visisibility_cutoff)
+	visi_bar.value = visibility
 
 func _physics_process(delta):
-	process_input(delta)
-	process_movement(delta)
+	_process_input(delta)
+	_process_movement(delta)
 
-
-func process_input(_delta):
+func _process_input(_delta):
 
 	dir = Vector3()
 	var cam_xform = camera.get_global_transform()
@@ -56,7 +79,7 @@ func process_input(_delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func process_movement(delta):
+func _process_movement(delta):
 	dir.y = 0
 	dir = dir.normalized()
 
@@ -81,7 +104,6 @@ func process_movement(delta):
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 1.0, 4, deg2rad(max_slope_angle))
 
 	visi_cam.global_transform.origin = Vector3(global_transform.origin.x, visi_cam.global_transform.origin.y, global_transform.origin.z)
-
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
