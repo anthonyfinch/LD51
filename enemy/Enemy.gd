@@ -90,22 +90,23 @@ func _check_for_player():
 						print("Huh, nothing to see")
 
 func _physics_process(_delta):
-	_check_for_player()
-	match state:
-		EnemyState.Scanning:
-			global_rotate(Vector3.UP, rad * turn_speed)
-		EnemyState.Wandering:
-			var done = _navigate_to_point(wander_speed)
-			if done:
-				_start_scanning(scan_time)
-		EnemyState.Investigating:
-			var done = _navigate_to_point(investigate_speed)
-			if done:
-				_start_waiting()
-		EnemyState.Attacking:
-			var done = _navigate_to_point(attack_speed)
-			if done:
-				_start_scanning(investigate_time)
+	if not GameState.paused:
+		_check_for_player()
+		match state:
+			EnemyState.Scanning:
+				global_rotate(Vector3.UP, rad * turn_speed)
+			EnemyState.Wandering:
+				var done = _navigate_to_point(wander_speed)
+				if done:
+					_start_scanning(scan_time)
+			EnemyState.Investigating:
+				var done = _navigate_to_point(investigate_speed)
+				if done:
+					_start_waiting()
+			EnemyState.Attacking:
+				var done = _navigate_to_point(attack_speed)
+				if done:
+					_start_scanning(investigate_time)
 
 func _start_waiting():
 	state = EnemyState.Waiting

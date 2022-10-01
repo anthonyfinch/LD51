@@ -20,14 +20,19 @@ onready var visi_cam : Camera = $ViewportContainer/Viewport/VisibilityCamera
 onready var visi_timer : Timer = $VisibilityTimer
 onready var visi_bar : ProgressBar = $UI/Visibility
 
+# UI
+onready var overlay : ColorRect = $UI/Overlay
+onready var pause_screen : Control = $UI/PauseScreen
+onready var resume_button : Button = $UI/PauseScreen/VBoxContainer/ResumeButton
+
 var dir = Vector3()
 var vel = Vector3()
 var visibility = 0.0
 
-
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	visi_timer.connect("timeout", self, "_update_visibility")
+	resume_button.connect("pressed", self, "_toggle_pause")
 	_update_visibility()
 
 func _update_visibility():
@@ -75,10 +80,19 @@ func _process_input(_delta):
 			vel.y = jump_speed
 
 	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		_toggle_pause()
+
+func _toggle_pause():
+	if GameState.paused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		overlay.visible = false
+		pause_screen.visible = false
+		GameState.paused = false
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		overlay.visible = true
+		pause_screen.visible = true
+		GameState.paused = true
 
 func _process_movement(delta):
 	dir.y = 0
