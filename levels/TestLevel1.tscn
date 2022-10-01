@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=1]
 [ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://addons/qodot/game_definitions/fgd/point_classes/light.gd" type="Script" id=5]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Environment.tres" type="Environment" id=7]
-[ext_resource path="res://ui/cursor.png" type="Texture" id=8]
 [ext_resource path="res://level_components/TextTrigger.tscn" type="PackedScene" id=9]
 [ext_resource path="res://level_components/EscapePod.tscn" type="PackedScene" id=10]
 [ext_resource path="res://level_components/PatrolPoint.tscn" type="PackedScene" id=11]
@@ -113,17 +112,6 @@ shadow_atlas_size = 512
 
 [node name="Camera" type="Camera" parent="Control/ViewportContainer/Viewport"]
 transform = Transform( 0.0156629, 0.89447, -0.446853, 0, 0.446908, 0.89458, 0.999877, -0.0140117, 0.0069999, -1.10425, 26.2462, 0.385028 )
-
-[node name="TextureRect" type="TextureRect" parent="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -64.0
-margin_top = -64.0
-margin_right = 64.0
-margin_bottom = 64.0
-texture = ExtResource( 8 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 7 )
