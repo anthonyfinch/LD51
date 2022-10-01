@@ -18,9 +18,9 @@ onready var pivot : Spatial = $Head/Pivot
 onready var visi_viewport : Viewport = $ViewportContainer/Viewport
 onready var visi_cam : Camera = $ViewportContainer/Viewport/VisibilityCamera
 onready var visi_timer : Timer = $VisibilityTimer
-onready var visi_bar : ProgressBar = $UI/Visibility
 
 # UI
+onready var visi_bar : ProgressBar = $UI/Visibility
 onready var overlay : ColorRect = $UI/Overlay
 onready var pause_screen : Control = $UI/PauseScreen
 onready var resume_button : Button = $UI/PauseScreen/VBoxContainer/ResumeButton

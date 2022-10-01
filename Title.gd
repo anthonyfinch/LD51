@@ -1,6 +1,6 @@
 extends Control
 
-const level = preload("res://levels/TestLevel1.tscn")
+const level = preload("res://levels/TestLevel2.tscn")
 
 onready var start_button = $VBoxContainer/StartButton
 onready var quit_button = $VBoxContainer/QuitButton

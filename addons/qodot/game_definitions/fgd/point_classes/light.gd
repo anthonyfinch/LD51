@@ -66,6 +66,8 @@ func update_properties():
 
 	light_node.set_color(light_color)
 
+	light_node.shadow_reverse_cull_face = true
+
 	add_child(light_node)
 
 	if is_inside_tree():

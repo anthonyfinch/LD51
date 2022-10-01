@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="PatrolPoint1" type="Position3D" groups=["patrol_points"]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4821, 0.0406843, 0 )

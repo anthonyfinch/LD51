@@ -10,7 +10,7 @@ points = PoolVector3Array( 1, 0, 0.499804, 0.995106, 0.0978857, 0.499804, 0.9800
 [sub_resource type="PrismMesh" id=24]
 
 [sub_resource type="BoxShape" id=25]
-extents = Vector3( 2.30899, 2.00573, 29.6859 )
+extents = Vector3( 17.236, 4.44505, 29.6859 )
 
 [node name="Enemy" type="KinematicBody"]
 transform = Transform( 1, 0, 7.45058e-09, -7.45058e-09, 1, 0, 1.49012e-08, 0, 1, 24.979, 0.041, 0 )

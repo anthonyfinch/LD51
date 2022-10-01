@@ -213,7 +213,7 @@ _global_script_class_icons={
 [application]
 
 config/name="LD51"
-run/main_scene="res://levels/TestLevel1.tscn"
+run/main_scene="res://levels/TestLevel2.tscn"
 config/icon="res://icon.png"
 
 [autoload]
