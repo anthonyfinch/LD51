@@ -10,7 +10,7 @@ func _ready():
 	if GameState.escaped:
 		failure_text.visible = false
 	else:
-		success_text.visible = true
+		success_text.visible = false
 
 	restart_button.connect("pressed", self, "_restart_game")
 	quit_button.connect("pressed", self, "_quit")

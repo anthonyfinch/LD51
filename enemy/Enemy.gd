@@ -109,6 +109,13 @@ func _physics_process(_delta):
 				if done:
 					_start_scanning(investigate_time)
 
+		var coll_count = get_slide_count()
+		for coll_idx in range(coll_count):
+			var coll = get_slide_collision(coll_idx)
+			var body = coll.collider
+			if body is Player:
+				body.die()
+
 func _start_waiting():
 	state = EnemyState.Waiting
 	timer.wait_time = wait_time

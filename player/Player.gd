@@ -160,3 +160,9 @@ func trigger_overlay_text(text):
 	overlay_text_label.text = text
 	overlay_text.visible = true
 	overlay_text_timer.start()
+
+func die():
+	GameState.escaped = false
+	var end_screen = load("res://End.tscn")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().change_scene_to(end_screen)
