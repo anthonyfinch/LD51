@@ -9,6 +9,7 @@ export (float) var acceleration = 1.0
 export (float) var deceleration = 5.0
 export (float) var max_slope_angle = 90.0
 export (float) var mouse_sensitivity = 0.4
+export (float) var walk_footstep_delay = 0.5
 
 export (float) var min_visisibility_cutoff = 10.0
 export (float) var max_visisibility_cutoff = 220.0
@@ -32,9 +33,10 @@ onready var overlay_text : Control = $UI/OverlayText
 onready var overlay_text_label : Label = $UI/OverlayText/Label
 onready var overlay_text_timer : Timer = $OverlayTextTimer
 
-var dir = Vector3()
-var vel = Vector3()
-var visibility = 0.0
+var dir := Vector3()
+var vel := Vector3()
+var visibility := 0.0
+var footstep_countdown := 0.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -64,6 +66,21 @@ func _physics_process(delta):
 	_process_input(delta)
 	if not GameState.paused:
 		_process_movement(delta)
+		_do_footsteps(delta)
+
+func _do_footsteps(delta):
+	if is_on_floor() and vel.length() > 0.0:
+		if footstep_countdown == 0.0:
+			pass
+			# print("FOOTSTEP")
+
+		footstep_countdown += delta
+		if footstep_countdown >= walk_footstep_delay:
+			footstep_countdown = 0.0
+
+	else:
+		footstep_countdown = 0.0
+
 
 func _process_input(_delta):
 
