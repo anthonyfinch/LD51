@@ -95,6 +95,12 @@ margin_right = 500.0
 margin_bottom = 38.0
 text = "Resume"
 
+[node name="QuitButton" type="Button" parent="UI/PauseScreen/VBoxContainer"]
+margin_top = 42.0
+margin_right = 500.0
+margin_bottom = 62.0
+text = "Quit"
+
 [node name="PausedTextScreen" type="Control" parent="UI"]
 visible = false
 anchor_right = 1.0

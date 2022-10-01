@@ -24,6 +24,7 @@ onready var visi_bar : ProgressBar = $UI/Visibility
 onready var overlay : ColorRect = $UI/Overlay
 onready var pause_screen : Control = $UI/PauseScreen
 onready var resume_button : Button = $UI/PauseScreen/VBoxContainer/ResumeButton
+onready var quit_button : Button = $UI/PauseScreen/VBoxContainer/QuitButton
 onready var paused_text_screen : Control = $UI/PausedTextScreen
 onready var paused_text_resume_button : Button = $UI/PausedTextScreen/VBoxContainer/ResumeButton
 onready var paused_text : Label = $UI/PausedTextScreen/VBoxContainer/Label
@@ -41,6 +42,7 @@ func _ready():
 	resume_button.connect("pressed", self, "_toggle_pause")
 	paused_text_resume_button.connect("pressed", self, "_toggle_pause")
 	overlay_text_timer.connect("timeout", self, "_hide_overlay_text")
+	quit_button.connect("pressed", self, "_quit")
 	_update_visibility()
 
 func _update_visibility():
@@ -142,6 +144,10 @@ func _input(event):
 
 func _hide_overlay_text():
 	overlay_text.visible = false
+
+func _quit():
+	var scene = load("res://Title.tscn")
+	get_tree().change_scene_to(scene)
 
 func trigger_paused_text(text):
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
