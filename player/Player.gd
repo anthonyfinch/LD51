@@ -24,6 +24,12 @@ onready var visi_bar : ProgressBar = $UI/Visibility
 onready var overlay : ColorRect = $UI/Overlay
 onready var pause_screen : Control = $UI/PauseScreen
 onready var resume_button : Button = $UI/PauseScreen/VBoxContainer/ResumeButton
+onready var paused_text_screen : Control = $UI/PausedTextScreen
+onready var paused_text_resume_button : Button = $UI/PausedTextScreen/VBoxContainer/ResumeButton
+onready var paused_text : Label = $UI/PausedTextScreen/VBoxContainer/Label
+onready var overlay_text : Control = $UI/OverlayText
+onready var overlay_text_label : Label = $UI/OverlayText/Label
+onready var overlay_text_timer : Timer = $OverlayTextTimer
 
 var dir = Vector3()
 var vel = Vector3()
@@ -33,6 +39,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	visi_timer.connect("timeout", self, "_update_visibility")
 	resume_button.connect("pressed", self, "_toggle_pause")
+	paused_text_resume_button.connect("pressed", self, "_toggle_pause")
+	overlay_text_timer.connect("timeout", self, "_hide_overlay_text")
 	_update_visibility()
 
 func _update_visibility():
@@ -52,32 +60,34 @@ func _update_visibility():
 
 func _physics_process(delta):
 	_process_input(delta)
-	_process_movement(delta)
+	if not GameState.paused:
+		_process_movement(delta)
 
 func _process_input(_delta):
 
-	dir = Vector3()
-	var cam_xform = camera.get_global_transform()
+	if not GameState.paused:
+		dir = Vector3()
+		var cam_xform = camera.get_global_transform()
 
-	var input_movement_vector = Vector2()
+		var input_movement_vector = Vector2()
 
-	if Input.is_action_pressed("forward"):
-		input_movement_vector.y += 1
-	if Input.is_action_pressed("back"):
-		input_movement_vector.y -= 1
-	if Input.is_action_pressed("left"):
-		input_movement_vector.x -= 1
-	if Input.is_action_pressed("right"):
-		input_movement_vector.x += 1
+		if Input.is_action_pressed("forward"):
+			input_movement_vector.y += 1
+		if Input.is_action_pressed("back"):
+			input_movement_vector.y -= 1
+		if Input.is_action_pressed("left"):
+			input_movement_vector.x -= 1
+		if Input.is_action_pressed("right"):
+			input_movement_vector.x += 1
 
-	input_movement_vector = input_movement_vector.normalized()
+		input_movement_vector = input_movement_vector.normalized()
 
-	dir += -cam_xform.basis.z * input_movement_vector.y
-	dir += cam_xform.basis.x * input_movement_vector.x
+		dir += -cam_xform.basis.z * input_movement_vector.y
+		dir += cam_xform.basis.x * input_movement_vector.x
 
-	if is_on_floor():
-		if Input.is_action_just_pressed("jump"):
-			vel.y = jump_speed
+		if is_on_floor():
+			if Input.is_action_just_pressed("jump"):
+				vel.y = jump_speed
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		_toggle_pause()
@@ -87,6 +97,7 @@ func _toggle_pause():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		overlay.visible = false
 		pause_screen.visible = false
+		paused_text_screen.visible = false
 		GameState.paused = false
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -128,3 +139,18 @@ func _input(event):
 		var camera_rot = pivot.rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
 		pivot.rotation_degrees = camera_rot
+
+func _hide_overlay_text():
+	overlay_text.visible = false
+
+func trigger_paused_text(text):
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	paused_text.text = text
+	overlay.visible = true
+	paused_text_screen.visible = true
+	GameState.paused = true
+
+func trigger_overlay_text(text):
+	overlay_text_label.text = text
+	overlay_text.visible = true
+	overlay_text_timer.start()

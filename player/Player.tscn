@@ -94,3 +94,51 @@ margin_top = 18.0
 margin_right = 500.0
 margin_bottom = 38.0
 text = "Resume"
+
+[node name="PausedTextScreen" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PausedTextScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -225.0
+margin_right = 250.0
+margin_bottom = 225.0
+rect_min_size = Vector2( 500, 450 )
+
+[node name="Label" type="Label" parent="UI/PausedTextScreen/VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 65.0
+text = "Lots and lots of text
+
+Here we go.....
+"
+
+[node name="ResumeButton" type="Button" parent="UI/PausedTextScreen/VBoxContainer"]
+margin_top = 69.0
+margin_right = 500.0
+margin_bottom = 89.0
+text = "Resume"
+
+[node name="OverlayText" type="Control" parent="UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="UI/OverlayText"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -72.0
+margin_bottom = -58.0
+text = "Overlay Text"
+align = 1
+
+[node name="OverlayTextTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
