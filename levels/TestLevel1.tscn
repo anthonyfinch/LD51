@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=1]
 [ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://enemy/Enemy.gd" type="Script" id=4]
 [ext_resource path="res://addons/qodot/game_definitions/fgd/point_classes/light.gd" type="Script" id=5]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Environment.tres" type="Environment" id=7]
+[ext_resource path="res://ui/cursor.png" type="Texture" id=8]
 
 [sub_resource type="NavigationMesh" id=21]
 vertices = PoolVector3Array( 6.25, 0.5, -10.75, 6.25, 0.5, -9.5, 6.75, 0.5, -10, 18.75, 0.5, -10, 19.75, 0.5, -10, 19.75, 0.5, -10.75, 13, 0.5, -10.75, 13, 0.5, -10.75, 6.25, 0.5, -10.75, 6.75, 0.5, -10, 13.5, 0.5, -10, 14.25, 0.5, -9.25, 18, 0.5, -9.25, 18.75, 0.5, -10, 13, 0.5, -10.75, 13.5, 0.5, -10, 14.25, 0.5, -4.5, 18, 0.5, -4.25, 18, 0.5, -9.25, 14.25, 0.5, -9.25, 19.75, 0.5, -10.75, 19.75, 0.5, -10, 25.5, 0.5, -10, 27, 0.5, -10.75, 25.25, 0.5, -1.75, 20.5, 0.5, -1.75, 20.5, 0.5, 2, 25.5, 0.5, 2, 27, 0.5, -10.75, 25.5, 0.5, -10, 26.25, 0.5, -9.25, 27, 0.5, -4.5, 27, 0.5, -10.75, 26.25, 0.5, -9.25, 26.25, 0.5, -2.75, 25.25, 0.5, -1.75, 25.5, 0.5, 2, 27, 0.5, 2, 26.25, 0.5, -2.75, 27, 0.5, 2, 27, 0.5, -4.5, 26.25, 0.5, -2.75, 8, 4.5, -8, 8, 4.5, -4, 12, 4.5, -4, 12, 4.5, -8, 20, 4.5, -8, 20, 4.5, -4, 24, 4.5, -4, 24, 4.5, -8, 8.25, 0.5, -7.75, 8.25, 0.5, -4, 12, 0.5, -4, 12, 0.5, -7.75, 20.25, 0.5, -7.75, 20.25, 0.5, -4, 24, 0.5, -4, 24, 0.5, -7.75, 6.75, 0.5, -1.75, 6.25, 0.5, -2.25, 6.25, 0.5, -0.75, 6.25, 0.5, 0.75, 6.25, 0.5, 2.5, 6.75, 0.5, 2, 6.25, 0.5, -0.75, 5.5, 0.5, -0.25, 6.25, 0.5, 0.75, 6.75, 0.5, -1.75, 6.25, 0.5, -0.75, 6.25, 0.5, 0.75, 6.75, 0.5, 2, 13.5, 0.5, 2, 13.25, 0.5, -1.75, 18.75, 0.5, -1.75, 18, 0.5, -2.5, 14.25, 0.5, -2.75, 13.25, 0.5, -1.75, 13.5, 0.5, 2, 18, 0.5, 2.75, 18, 0.5, -4.25, 14.25, 0.5, -4.5, 14.25, 0.5, -2.75, 18, 0.5, -2.5, 13.5, 0.5, 2, 14.25, 0.5, 2.75, 18, 0.5, 2.75, 14.25, 0.5, 4.5, 18, 0.5, 4.5, 18, 0.5, 2.75, 14.25, 0.5, 2.75, 18, 0.5, 2.75, 18.75, 0.5, 2, 18.75, 0.5, -1.75, 18.75, 0.5, 2, 20.5, 0.5, 2, 20.5, 0.5, -1.75, 18.75, 0.5, -1.75, 3, 0.5, 0.75, 3.75, 0.5, 0.25, 3, 0.5, -0.5, -2.75, 0.5, -2.75, -2.75, 0.5, 3, -2.75, 0.5, 3, 3, 0.5, 3, 3, 0.5, 0.75, 3, 0.5, -0.5, 3, 0.5, -2.75, -2.75, 0.5, -2.75, 6.75, 0.5, 10.25, 6.25, 0.5, 9.75, 6.25, 0.5, 11, 27, 0.5, 2, 25.5, 0.5, 2, 26.25, 0.5, 2.75, 18, 0.5, 4.5, 14.25, 0.5, 4.5, 14.25, 0.5, 9.25, 18, 0.5, 9.5, 27, 0.5, 11, 25.25, 0.5, 10.25, 18.75, 0.5, 10.25, 16.5, 0.5, 11, 18.75, 0.5, 10.25, 18, 0.5, 9.5, 14.25, 0.5, 9.25, 13.25, 0.5, 10.25, 16.5, 0.5, 11, 27, 0.5, 2, 26.25, 0.5, 2.75, 26.25, 0.5, 9.25, 27, 0.5, 11, 13.25, 0.5, 10.25, 6.75, 0.5, 10.25, 6.25, 0.5, 11, 16.5, 0.5, 11, 27, 0.5, 11, 26.25, 0.5, 9.25, 25.25, 0.5, 10.25, 8, 4.5, 4, 8, 4.5, 8, 12, 4.5, 8, 12, 4.5, 4, 20, 4.5, 4, 20, 4.5, 8, 24, 4.5, 8, 24, 4.5, 4, 8.25, 0.5, 4.25, 8.25, 0.5, 8, 12, 0.5, 8, 12, 0.5, 4.25, 20.25, 0.5, 4.25, 20.25, 0.5, 8, 24, 0.5, 8, 24, 0.5, 4.25 )
@@ -89,13 +91,40 @@ points = PoolVector3Array( 1, 0, 0.499804, 0.995106, 0.0978857, 0.499804, 0.9800
 
 [sub_resource type="PrismMesh" id=24]
 
-[sub_resource type="Environment" id=25]
-background_mode = 1
-background_color = Color( 0.101961, 0.101961, 0.101961, 1 )
-ambient_light_color = Color( 1, 1, 1, 1 )
-ambient_light_energy = 0.28
-
 [node name="Spatial" type="Spatial"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -162.0
+margin_right = 300.0
+
+[node name="Viewport" type="Viewport" parent="Control/ViewportContainer"]
+size = Vector2( 300, 150 )
+handle_input_locally = false
+render_target_update_mode = 3
+shadow_atlas_size = 512
+
+[node name="Camera" type="Camera" parent="Control/ViewportContainer/Viewport"]
+transform = Transform( 0.0156629, 0.89447, -0.446853, 0, 0.446908, 0.89458, 0.999877, -0.0140117, 0.0069999, -1.10425, 26.2462, 0.385028 )
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 8 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 7 )
 
 [node name="PatrolPoint1" type="Position3D" parent="." groups=["patrol_points"]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.4821, 0.0406843, 0 )
@@ -266,11 +295,9 @@ mesh = SubResource( 24 )
 [node name="Timer" type="Timer" parent="Enemy"]
 process_mode = 0
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.167587, 0.734984, -0.657049, 0, 0.666475, 0.745528, 0.985857, -0.12494, 0.111692, -27.6077, 46.2293, 6.33045 )
-
 [node name="Player" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82228, 0.0416528, 1.18892 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.6056, 0.0416528, 0.31598 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 25 )
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.23889, 0 )
+visible = false

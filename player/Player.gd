@@ -11,6 +11,7 @@ export (float) var mouse_sensitivity = 0.4
 
 onready var camera = $Head/Pivot/Camera
 onready var pivot = $Head/Pivot
+onready var visi_cam = $ViewportContainer/Viewport/VisibilityCamera
 
 var dir = Vector3()
 var vel = Vector3()
@@ -78,6 +79,9 @@ func process_movement(delta):
 	vel.x = hvel.x
 	vel.z = hvel.z
 	vel = move_and_slide(vel, Vector3(0, 1, 0), 1.0, 4, deg2rad(max_slope_angle))
+
+	visi_cam.global_transform.origin = Vector3(global_transform.origin.x, visi_cam.global_transform.origin.y, global_transform.origin.z)
+
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
