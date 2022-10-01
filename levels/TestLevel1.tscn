@@ -270,7 +270,7 @@ spot_range = 16.0
 [node name="Enemy" parent="." instance=ExtResource( 4 )]
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.6056, 0.0416528, 0.31598 )
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.0433452, 0 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.23889, 0 )
