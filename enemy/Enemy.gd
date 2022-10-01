@@ -71,7 +71,7 @@ func _check_for_player():
 		if possible_body is Player:
 			var space_state = get_world().direct_space_state
 			var from = global_transform.origin
-			var to = possible_body.global_transform.origin
+			var to = possible_body.head.global_transform.origin
 			var result = space_state.intersect_ray(from, to, [self])
 			if result:
 				var body = result['collider']
