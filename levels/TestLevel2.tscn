@@ -530,3 +530,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 45.9242, 7.04515, -1.85351 )
 
 [node name="Enemy" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 7.45058e-09, -7.45058e-09, 1, 0, 1.49012e-08, 0, 1, 31.7894, 0.536266, 0 )
+turn_speed = 0.4
+state = 0
+scan_time = 6.0
+wait_time = 4.0
+investigate_time = 10.0
+wander_speed = 1.0
+investigate_speed = 2.0
+total_visibility_cutoff = 0.65
+partial_visibility_cutoff = 0.15

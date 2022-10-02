@@ -130,8 +130,9 @@ func _navigate_to_point(speed):
 	var next_move = nav_agent.get_next_location()
 	var dir = (next_move - get_global_transform().origin).normalized()
 
-	# TODO replace this with a lerp to turn gradually
-	look_at(next_move, Vector3.UP)
+
+	# rotate smoothly to look at the next point
+	rotation.y = lerp(rotation.y, atan2(-dir.x, -dir.z), 0.1)
 
 	if not nav_agent.is_navigation_finished():
 		move_and_slide(dir * speed)
