@@ -17,10 +17,12 @@ export (float) var deceleration = 5.0
 export (float) var max_slope_angle = 90.0
 export (float) var mouse_sensitivity = 0.4
 export (float) var crouch_amount = 0.5
-export (float) var walk_footstep_delay = 0.5
+export (float) var walk_footstep_delay = 0.8
 
 export (float) var min_visisibility_cutoff = 10.0
 export (float) var max_visisibility_cutoff = 220.0
+
+export (Array, AudioStreamSample) var footstep_sounds = []
 
 onready var body : CollisionShape = $Body
 onready var head : Spatial = $Head
@@ -34,6 +36,7 @@ onready var normal_body_radius : float = body.shape.radius
 onready var normal_body_offset : float = body.transform.origin.y
 onready var normal_head_height : float = head.transform.origin.y
 onready var footstep_area : Area = $FootstepSoundArea
+onready var audio_player : AudioStreamPlayer = $AudioPlayer
 
 
 # UI
@@ -132,14 +135,20 @@ func _undo_crouch():
 	head.transform.origin.y = normal_head_height
 
 func _do_footsteps(delta):
-	if is_on_floor() and vel.length() > 0.0:
+	if is_on_floor() and dir.length() > 0.1:
 		if footstep_countdown == 0.0:
 			if state == PlayerState.Walking:
 				var bodies = footstep_area.get_overlapping_bodies()
 				for listener in bodies:
 					if listener.has_method("hear_movement"):
 						listener.hear_movement(self)
-			# print("PLAY FOOTSTEP")
+				if footstep_sounds.size() > 0:
+					var pitch_adj = rand_range(0, 0.01)
+					audio_player.stop()
+					footstep_sounds.shuffle()
+					audio_player.pitch_scale = 1 + pitch_adj
+					audio_player.stream = footstep_sounds.front()
+					audio_player.play()
 
 		footstep_countdown += delta
 		if footstep_countdown >= walk_footstep_delay:
