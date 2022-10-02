@@ -65,6 +65,17 @@ autostart = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="TextureRect" type="TextureRect" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+
 [node name="Visibility" type="ProgressBar" parent="UI"]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -153,6 +164,7 @@ text = "Next..."
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="UI/OverlayText"]
 anchor_top = 1.0
@@ -161,22 +173,12 @@ anchor_bottom = 1.0
 margin_top = -183.0
 margin_bottom = -109.0
 custom_fonts/font = ExtResource( 3 )
-text = "Overlay Text"
+text = "Overlay Text here is a really olong one"
 align = 1
-
-[node name="TextureRect" type="TextureRect" parent="UI"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -64.0
-margin_top = -64.0
-margin_right = 64.0
-margin_bottom = 64.0
-texture = ExtResource( 2 )
+autowrap = true
 
 [node name="OverlayTextTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 
 [node name="FootstepSoundArea" type="Area" parent="."]
