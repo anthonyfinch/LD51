@@ -10,6 +10,7 @@ func _ready():
 	quit_button.connect("pressed", self, "_quit")
 
 func _start_game():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().change_scene_to(level)
 
 func _quit():
