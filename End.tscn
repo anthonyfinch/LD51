@@ -28,31 +28,30 @@ custom_constants/separation = 15
 alignment = 1
 
 [node name="Success" type="Label" parent="VBoxContainer"]
-margin_top = 88.0
-margin_right = 372.0
-margin_bottom = 117.0
+margin_right = 350.0
+margin_bottom = 189.0
 custom_fonts/font = ExtResource( 3 )
-text = "Congratulations, you made it out."
+text = "The sound of the escape pod's engine hums quietly as you settle in for the long trip back to the inner system. Congratulations on making it out of there....."
 align = 1
+autowrap = true
 
 [node name="Failure" type="Label" parent="VBoxContainer"]
-margin_top = 132.0
-margin_right = 372.0
-margin_bottom = 161.0
+margin_top = 204.0
+margin_right = 350.0
+margin_bottom = 361.0
 custom_fonts/font = ExtResource( 3 )
-text = "You Died"
+text = "Caught by a security system protecting nothing but a ghost's ego, your biomatter is used to power the whole pointless system."
 align = 1
+autowrap = true
 
 [node name="RestartButton" parent="VBoxContainer" instance=ExtResource( 4 )]
-margin_top = 176.0
-margin_right = 372.0
-margin_bottom = 211.0
+margin_top = 376.0
+margin_bottom = 411.0
 text = "RESTART"
 
 [node name="QuitButton" parent="VBoxContainer" instance=ExtResource( 4 )]
-margin_top = 226.0
-margin_right = 372.0
-margin_bottom = 261.0
+margin_top = 426.0
+margin_bottom = 461.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 2 )
