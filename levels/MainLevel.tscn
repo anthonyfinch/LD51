@@ -1327,7 +1327,7 @@ shadow_enabled = true
 
 [node name="IntroText" parent="Zones" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48477, 0 )
-message = "...........................................................suit online............................use WASD keys to move..............................mouse to look/turn.................avoid capture and make it to the escape pods....................good luck..........."
+message = "...........................................................suit online............................use WASD keys to move..............................mouse to look/turn.................avoid capture and make it to the escape pods....................good luck...........(use the P key to pause at any time)"
 
 [node name="CollisionShape" type="CollisionShape" parent="Zones/IntroText"]
 shape = SubResource( 342 )
