@@ -78,6 +78,7 @@ func _update_visibility():
 		total += pix
 
 	var raw_vis = total / (raw_pix.size())
+	print(raw_vis)
 	var clamped_vis = clamp(raw_vis, min_visisibility_cutoff, max_visisibility_cutoff)
 	visibility = clamped_vis / (max_visisibility_cutoff - min_visisibility_cutoff)
 	visi_bar.value = visibility

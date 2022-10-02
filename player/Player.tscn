@@ -22,6 +22,8 @@ radius = 15.0
 [node name="Player" type="KinematicBody"]
 collision_layer = 2
 script = ExtResource( 1 )
+min_visisibility_cutoff = 0.0
+max_visisibility_cutoff = 75.0
 footstep_sounds = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 6 ) ]
 
 [node name="Feet" type="CollisionShape" parent="."]

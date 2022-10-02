@@ -1331,7 +1331,6 @@ set_owner_batch_size = 16
 
 [node name="entity_1_func_group" type="StaticBody" parent="NavigationMeshInstance/QodotMap"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 8.5, 0 )
-visible = false
 
 [node name="entity_1_mesh_instance" type="MeshInstance" parent="NavigationMeshInstance/QodotMap/entity_1_func_group"]
 mesh = SubResource( 4 )
@@ -2616,7 +2615,6 @@ shape = SubResource( 331 )
 
 [node name="entity_27_func_group" type="StaticBody" parent="NavigationMeshInstance/QodotMap"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 215, 8.5, 0 )
-visible = false
 
 [node name="entity_27_mesh_instance" type="MeshInstance" parent="NavigationMeshInstance/QodotMap/entity_27_func_group"]
 mesh = SubResource( 332 )
