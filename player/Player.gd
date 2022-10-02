@@ -17,7 +17,7 @@ export (float) var deceleration = 5.0
 export (float) var max_slope_angle = 90.0
 export (float) var mouse_sensitivity = 0.4
 export (float) var crouch_amount = 0.5
-export (float) var walk_footstep_delay = 0.8
+export (float) var walk_footstep_delay = 0.6
 
 export (float) var min_visisibility_cutoff = 10.0
 export (float) var max_visisibility_cutoff = 220.0

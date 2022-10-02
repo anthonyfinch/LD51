@@ -186,3 +186,4 @@ collision_mask = 4
 shape = SubResource( 3 )
 
 [node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -22.0

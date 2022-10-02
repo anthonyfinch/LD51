@@ -1,9 +1,10 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://environment/Environment.tres" type="Environment" id=1]
 [ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=2]
 [ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=3]
 [ext_resource path="res://textures/Wall1.png" type="Texture" id=4]
+[ext_resource path="res://audio/ld51.ogg" type="AudioStream" id=5]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://level_components/PatrolPoint.tscn" type="PackedScene" id=7]
 [ext_resource path="res://enemy/Enemy.tscn" type="PackedScene" id=8]
@@ -297,3 +298,7 @@ shape = SubResource( 35 )
 
 [node name="entity_2_brush_28_collision_shape" type="CollisionShape" parent="NavigationMeshInstance/QodotMap/entity_2_func_group"]
 shape = SubResource( 36 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
