@@ -33,6 +33,7 @@ onready var normal_body_height : float = body.shape.height
 onready var normal_body_radius : float = body.shape.radius
 onready var normal_body_offset : float = body.transform.origin.y
 onready var normal_head_height : float = head.transform.origin.y
+onready var footstep_area : Area = $FootstepSoundArea
 
 
 # UI
@@ -133,8 +134,12 @@ func _undo_crouch():
 func _do_footsteps(delta):
 	if is_on_floor() and vel.length() > 0.0:
 		if footstep_countdown == 0.0:
-			pass
-			# print("FOOTSTEP")
+			if state == PlayerState.Walking:
+				var bodies = footstep_area.get_overlapping_bodies()
+				for listener in bodies:
+					if listener.has_method("hear_movement"):
+						listener.hear_movement(self)
+			# print("PLAY FOOTSTEP")
 
 		footstep_countdown += delta
 		if footstep_countdown >= walk_footstep_delay:

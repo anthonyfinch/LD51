@@ -138,3 +138,8 @@ func _navigate_to_point(speed):
 		return false
 	else:
 		return true
+
+func hear_movement(body):
+	target = body.global_transform.origin
+	_set_path()
+	state = EnemyState.Investigating
