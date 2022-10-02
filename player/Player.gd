@@ -40,7 +40,8 @@ onready var audio_player : AudioStreamPlayer = $AudioPlayer
 
 
 # UI
-onready var visi_bar : ProgressBar = $UI/Visibility
+onready var visi_bar : ProgressBar = $UI/VBoxContainer/HBoxContainer/Visibility
+onready var state_label : Label = $UI/VBoxContainer/StateLabel
 onready var overlay : ColorRect = $UI/Overlay
 onready var pause_screen : Control = $UI/PauseScreen
 onready var resume_button : Button = $UI/PauseScreen/VBoxContainer/ResumeButton
@@ -81,6 +82,12 @@ func _update_visibility():
 	var clamped_vis = clamp(raw_vis, min_visisibility_cutoff, max_visisibility_cutoff)
 	visibility = clamped_vis / (max_visisibility_cutoff - min_visisibility_cutoff)
 	visi_bar.value = visibility
+
+func _process(_delta):
+	if state == PlayerState.Walking:
+		state_label.text = "Status: Walking"
+	elif state == PlayerState.Crouching:
+		state_label.text = "Status: Crouching"
 
 func _physics_process(delta):
 	_process_input(delta)

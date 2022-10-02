@@ -78,15 +78,39 @@ margin_right = 64.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
-[node name="Visibility" type="ProgressBar" parent="UI"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -100.0
-margin_top = 22.0
-margin_right = 100.0
-margin_bottom = 36.0
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+margin_left = 15.0
+margin_top = 16.0
+margin_right = 315.0
+margin_bottom = 89.0
+custom_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 29.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
+margin_right = 90.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 5 )
+text = "Visibility:"
+
+[node name="Visibility" type="ProgressBar" parent="UI/VBoxContainer/HBoxContainer"]
+margin_left = 100.0
+margin_right = 300.0
+margin_bottom = 29.0
 rect_min_size = Vector2( 200, 0 )
+size_flags_vertical = 3
 max_value = 1.0
+
+[node name="StateLabel" type="Label" parent="UI/VBoxContainer"]
+margin_top = 44.0
+margin_right = 300.0
+margin_bottom = 73.0
+custom_fonts/font = ExtResource( 5 )
+text = "Status: Walking"
 
 [node name="Overlay" type="ColorRect" parent="UI"]
 visible = false
