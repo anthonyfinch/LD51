@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://enemy/Material.material" type="Material" id=2]
+[ext_resource path="res://audio/enemy_hum.wav" type="AudioStream" id=3]
 
 [sub_resource type="ArrayMesh" id=27]
 resource_name = "enemy_Cube"
@@ -35,7 +36,8 @@ transform = Transform( 1, 0, 7.45058e-09, -7.45058e-09, 1, 0, 1.49012e-08, 0, 1,
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 1 )
-attack_speed = 6.0
+investigate_speed = 4.0
+attack_speed = 8.0
 
 [node name="Model" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, -8.27183e-25, 1, 0, 0, 0, 1, 0, -0.0658212, 0 )
@@ -68,3 +70,9 @@ collision_mask = 2
 [node name="CollisionShape" type="CollisionShape" parent="VisionCone"]
 transform = Transform( 1, 0, 0, -8.27183e-25, 1, 0, 0, 0, 1, 0, -0.466202, -30.1598 )
 shape = SubResource( 25 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+max_db = 6.0
+autoplay = true
+doppler_tracking = 2

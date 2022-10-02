@@ -16,14 +16,15 @@ export (float) var investigate_time := 10.0
 export (float) var wander_speed := 1.0
 export (float) var investigate_speed := 2.0
 export (float) var attack_speed := 5.0
-export (float) var total_visibility_cutoff := 0.65
-export (float) var partial_visibility_cutoff := 0.15
+export (float) var total_visibility_cutoff := 0.85
+export (float) var partial_visibility_cutoff := 0.45
 
 onready var nav_agent : NavigationAgent = $NavigationAgent
 onready var timer : Timer = $Timer
 onready var vision_cone : Area = $VisionCone
 onready var rad := PI / 180
 onready var patrol_points = get_parent().find_node("PatrolPoints").get_children()
+onready var audio : AudioStreamPlayer3D = $AudioStreamPlayer3D
 # onready var label = $Label
 
 var target := Vector3.ZERO
@@ -49,7 +50,9 @@ func _on_timeout():
 		EnemyState.Waiting:
 			_start_scanning(investigate_time)
 
-# func _process(_delta):
+func _process(_delta):
+	if not audio.playing:
+		audio.play()
 # 	var debug_text = ""
 # 	match state:
 # 		EnemyState.Attacking:
