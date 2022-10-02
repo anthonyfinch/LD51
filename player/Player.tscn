@@ -22,6 +22,7 @@ radius = 15.0
 [node name="Player" type="KinematicBody"]
 collision_layer = 2
 script = ExtResource( 1 )
+max_walk_speed = 7.0
 min_visisibility_cutoff = 0.0
 max_visisibility_cutoff = 75.0
 footstep_sounds = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 6 ) ]
@@ -40,6 +41,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0 )
 [node name="Pivot" type="Spatial" parent="Head"]
 
 [node name="Camera" type="Camera" parent="Head/Pivot"]
+doppler_tracking = 2
 current = true
 
 [node name="Viewport" type="Viewport" parent="."]
@@ -179,6 +181,8 @@ text = "Lots and lots of text
 
 Here we go.....
 "
+align = 1
+autowrap = true
 
 [node name="ResumeButton" parent="UI/PausedTextScreen/VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 272.0
