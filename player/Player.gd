@@ -9,6 +9,8 @@ enum PlayerState {
 export (float) var gravity = -34.8
 export (float) var max_walk_speed = 8.0
 export (float) var max_crouch_speed = 3.0
+export (float) var lean_lateral_amount = 0.5
+export (float) var lean_angle = 25.0
 export (float) var jump_speed  = 12.0
 export (float) var acceleration = 1.0
 export (float) var deceleration = 5.0
@@ -81,8 +83,24 @@ func _physics_process(delta):
 	if not GameState.paused:
 		_process_movement(delta)
 		_do_footsteps(delta)
+		_do_lean()
 		if state == PlayerState.Crouching:
 			_do_crouch()
+
+func _do_lean():
+	var lean = 0
+	var rate_of_change = 0.1
+	if Input.is_action_pressed("lean_left"):
+		lean += -1
+	if Input.is_action_pressed("lean_right"):
+		lean += 1
+
+	var lean_lateral_to = lean * lean_lateral_amount
+	var lean_angle_to = lean * lean_angle * -1
+
+	head.transform.origin.x = lerp(head.transform.origin.x, lean_lateral_to, rate_of_change)
+	var lean_angle_lerp = lerp(head.rotation_degrees.z, lean_angle_to, rate_of_change)
+	head.rotation_degrees = Vector3(0, 0, lean_angle_lerp)
 
 func _do_crouch():
 	var rate_of_change = 0.1
