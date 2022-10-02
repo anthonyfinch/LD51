@@ -514,28 +514,21 @@ shape = SubResource( 59 )
 [node name="Player" parent="." instance=ExtResource( 6 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.0414946, 0 )
 
-[node name="Spatial" type="Spatial" parent="."]
+[node name="EnemyArea1" type="Spatial" parent="."]
 
-[node name="PatrolPoint1" parent="Spatial" instance=ExtResource( 7 )]
+[node name="PatrolPoints" type="Spatial" parent="EnemyArea1"]
+
+[node name="PatrolPoint1" parent="EnemyArea1/PatrolPoints" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3163, 7.04515, 0 )
 
-[node name="PatrolPoint2" parent="Spatial" instance=ExtResource( 7 )]
+[node name="PatrolPoint2" parent="EnemyArea1/PatrolPoints" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9354, 7.04515, -15.869 )
 
-[node name="PatrolPoint3" parent="Spatial" instance=ExtResource( 7 )]
+[node name="PatrolPoint3" parent="EnemyArea1/PatrolPoints" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9354, 7.04515, -0.390777 )
 
-[node name="PatrolPoint4" parent="Spatial" instance=ExtResource( 7 )]
+[node name="PatrolPoint4" parent="EnemyArea1/PatrolPoints" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 45.9242, 7.04515, -1.85351 )
 
-[node name="Enemy" parent="." instance=ExtResource( 8 )]
+[node name="Enemy" parent="EnemyArea1" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 7.45058e-09, -7.45058e-09, 1, 0, 1.49012e-08, 0, 1, 31.7894, 0.536266, 0 )
-turn_speed = 0.4
-state = 0
-scan_time = 6.0
-wait_time = 4.0
-investigate_time = 10.0
-wander_speed = 1.0
-investigate_speed = 2.0
-total_visibility_cutoff = 0.65
-partial_visibility_cutoff = 0.15

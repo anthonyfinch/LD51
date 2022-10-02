@@ -23,7 +23,7 @@ onready var nav_agent : NavigationAgent = $NavigationAgent
 onready var timer : Timer = $Timer
 onready var vision_cone : Area = $VisionCone
 onready var rad := PI / 180
-onready var patrol_points = get_tree().get_nodes_in_group("patrol_points")
+onready var patrol_points = get_parent().find_node("PatrolPoints").get_children()
 onready var label = $Label
 
 var target := Vector3.ZERO
