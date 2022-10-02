@@ -24,7 +24,7 @@ onready var timer : Timer = $Timer
 onready var vision_cone : Area = $VisionCone
 onready var rad := PI / 180
 onready var patrol_points = get_parent().find_node("PatrolPoints").get_children()
-onready var label = $Label
+# onready var label = $Label
 
 var target := Vector3.ZERO
 
@@ -49,20 +49,20 @@ func _on_timeout():
 		EnemyState.Waiting:
 			_start_scanning(investigate_time)
 
-func _process(_delta):
-	var debug_text = ""
-	match state:
-		EnemyState.Attacking:
-			debug_text = "Attacking"
-		EnemyState.Investigating:
-			debug_text = "Investigating"
-		EnemyState.Scanning:
-			debug_text = "Scanning"
-		EnemyState.Wandering:
-			debug_text = "Wandering"
-		EnemyState.Waiting:
-			debug_text = "Waiting"
-	label.text = debug_text
+# func _process(_delta):
+# 	var debug_text = ""
+# 	match state:
+# 		EnemyState.Attacking:
+# 			debug_text = "Attacking"
+# 		EnemyState.Investigating:
+# 			debug_text = "Investigating"
+# 		EnemyState.Scanning:
+# 			debug_text = "Scanning"
+# 		EnemyState.Wandering:
+# 			debug_text = "Wandering"
+# 		EnemyState.Waiting:
+# 			debug_text = "Waiting"
+# 	label.text = debug_text
 
 func _check_for_player():
 	var bodies = vision_cone.get_overlapping_bodies()
