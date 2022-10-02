@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://ui/cursor.png" type="Texture" id=2]
+[ext_resource path="res://ui/Novem64.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/Button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/CaviarDreams24.tres" type="DynamicFont" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.5, 0.1, 0.5 )
@@ -86,24 +89,25 @@ margin_top = -225.0
 margin_right = 250.0
 margin_bottom = 225.0
 rect_min_size = Vector2( 500, 450 )
+custom_constants/separation = 25
 
 [node name="Label" type="Label" parent="UI/PauseScreen/VBoxContainer"]
 margin_right = 500.0
-margin_bottom = 14.0
-text = "[PAUSED]"
+margin_bottom = 74.0
+custom_fonts/font = ExtResource( 3 )
+text = "PAUSED"
 align = 1
 
-[node name="ResumeButton" type="Button" parent="UI/PauseScreen/VBoxContainer"]
-margin_top = 18.0
+[node name="ResumeButton" parent="UI/PauseScreen/VBoxContainer" instance=ExtResource( 4 )]
+margin_top = 99.0
 margin_right = 500.0
-margin_bottom = 38.0
-text = "Resume"
+margin_bottom = 134.0
+text = "RESUME"
 
-[node name="QuitButton" type="Button" parent="UI/PauseScreen/VBoxContainer"]
-margin_top = 42.0
+[node name="QuitButton" parent="UI/PauseScreen/VBoxContainer" instance=ExtResource( 4 )]
+margin_top = 159.0
 margin_right = 500.0
-margin_bottom = 62.0
-text = "Quit"
+margin_bottom = 194.0
 
 [node name="PausedTextScreen" type="Control" parent="UI"]
 visible = false
@@ -120,20 +124,23 @@ margin_top = -225.0
 margin_right = 250.0
 margin_bottom = 225.0
 rect_min_size = Vector2( 500, 450 )
+alignment = 1
 
 [node name="Label" type="Label" parent="UI/PausedTextScreen/VBoxContainer"]
+margin_top = 143.0
 margin_right = 500.0
-margin_bottom = 65.0
+margin_bottom = 268.0
+custom_fonts/font = ExtResource( 5 )
 text = "Lots and lots of text
 
 Here we go.....
 "
 
-[node name="ResumeButton" type="Button" parent="UI/PausedTextScreen/VBoxContainer"]
-margin_top = 69.0
+[node name="ResumeButton" parent="UI/PausedTextScreen/VBoxContainer" instance=ExtResource( 4 )]
+margin_top = 272.0
 margin_right = 500.0
-margin_bottom = 89.0
-text = "Resume"
+margin_bottom = 307.0
+text = "Next..."
 
 [node name="OverlayText" type="Control" parent="UI"]
 visible = false
@@ -144,8 +151,9 @@ anchor_bottom = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -72.0
-margin_bottom = -58.0
+margin_top = -183.0
+margin_bottom = -109.0
+custom_fonts/font = ExtResource( 3 )
 text = "Overlay Text"
 align = 1
 

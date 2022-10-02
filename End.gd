@@ -1,4 +1,4 @@
-extends Control
+extends Spatial
 
 onready var success_text = $VBoxContainer/Success
 onready var failure_text = $VBoxContainer/Failure

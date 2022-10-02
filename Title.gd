@@ -1,6 +1,6 @@
-extends Control
+extends Spatial
 
-const level = preload("res://levels/TestLevel2.tscn")
+const level = preload("res://levels/MainLevel.tscn")
 
 onready var start_button = $VBoxContainer/StartButton
 onready var quit_button = $VBoxContainer/QuitButton
